@@ -28,7 +28,7 @@ function createBot(name, reconnectInterval) {
       host: SERVER_HOST,
       port: SERVER_PORT,
       username: name,
-      version: '1.20.1',
+      version: '1.21.11',
       hideErrors: true,
       checkTimeoutInterval: 30000
     });
