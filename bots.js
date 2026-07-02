@@ -1,9 +1,9 @@
 const mineflayer = require('mineflayer');
 
-const SERVER_HOST = 'Hecker.aternos.me';
-const SERVER_PORT = 43111;
+// Default Minecraft Java Port
+const DEFAULT_PORT = 25565;
 
-function createBot(name, reconnectInterval) {
+function createBot(name, host, reconnectInterval) {
   let bot;
   let movementInterval;
   let reconnectTimer;
@@ -28,8 +28,8 @@ function createBot(name, reconnectInterval) {
     cleanup();
 
     bot = mineflayer.createBot({
-      host: SERVER_HOST,
-      port: SERVER_PORT,
+      host: host,
+      port: DEFAULT_PORT,
       username: name,
       version: '1.20.1',
       hideErrors: true,
@@ -114,8 +114,12 @@ function createBot(name, reconnectInterval) {
   connect();
 }
 
-// 60 minutes = 60 * 60 * 1000 = 3600000 ms
 const ONE_HOUR = 60 * 60 * 1000;
 
-createBot('John', ONE_HOUR);
-setTimeout(() => createBot('Egypt', ONE_HOUR), 5000);
+// Server 1: Hecker.aternos.me
+createBot('John', 'Hecker.aternos.me', ONE_HOUR);
+setTimeout(() => createBot('Egypt', 'Hecker.aternos.me', ONE_HOUR), 5000);
+
+// Server 2: ACoolServerEG.aternos.me
+setTimeout(() => createBot('John', 'ACoolServerEG.aternos.me', ONE_HOUR), 10000);
+setTimeout(() => createBot('Egypt', 'ACoolServerEG.aternos.me', ONE_HOUR), 15000);
